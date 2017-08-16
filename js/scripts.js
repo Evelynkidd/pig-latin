@@ -1,6 +1,6 @@
 $(document).ready(function(){
   $("#pig-latin-form").submit(function(event){
-    var str = $("#sentence").val();
+    var str = $("#sentence").val().toLowerCase();
 
     function translatePigLatin(str){
       var vowels = ["a", "e", "i", "o", "u"],
@@ -19,8 +19,6 @@ $(document).ready(function(){
         }
       }
     }
-
-
     $("#output").show().text(translatePigLatin(str));
       event.preventDefault();
     });
