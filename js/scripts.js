@@ -1,14 +1,27 @@
 $(document).ready(function(){
   $("#pig-latin-form").submit(function(event){
-    event.preventDefault();
+    var str = $("#sentence").val();
 
-    var sentenceInput = $("#sentence").val();
-    var vowelCounter = 0;
-    //console.log(sentenceInput);
+    function translatePigLatin(str){
+      var vowels = ["a", "e", "i", "o", "u"],
+      result = str.split("");
 
-    for(var i = 0; i <= sentenceInput.length - 1; i++){
-      if(sentenceInput)
+      if (vowels.includes(str.charAt(0))){
+        return str += "way";
+      }else{
+        for(var i = 0; i < str.length; i++){
+          if(!vowels.includes(str[i])){
+            result.push(result.shift());
+          }else{
+            result.push("ay");
+            return result.join("");
+          }
+        }
+      }
     }
 
-  });
+
+    $("#output").show().text(translatePigLatin(str));
+      event.preventDefault();
+    });
 });
